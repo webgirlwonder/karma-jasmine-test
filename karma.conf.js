@@ -1,22 +1,21 @@
 // Karma configuration
 // Generated on Fri May 17 2019 10:37:04 GMT-0500 (Central Daylight Time)
 
+var webpackConfig = require('./webpack.config.js');
+
 module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
-
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine', 'requirejs'],
-
+    frameworks: ['jasmine','requirejs'],
 
     // list of files / patterns to load in the browser
     files: [
-      { pattern: '*.js', included: true },
-      { pattern: 'spec/*Spec.js', included: true }
+      'spec-bundle.js'
     ],
 
 
@@ -27,13 +26,23 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {},
-
+    // preprocessors: {
+      // '*.js': [ 'webpack' ],
+      // 'spec/*Spec.js': ['webpack' ]
+    // },
+    
+    preprocessors: {
+      'spec-bundle.js': ['webpack' ]
+    },
+      
+      
+    webpack: webpackConfig,
+      
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['dots'],
+    reporters: ['spec'],
 
 
     // web server port
@@ -49,8 +58,8 @@ module.exports = function(config) {
     logLevel: config.LOG_DEBUG,
 
 
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    /* // enable / disable watching file and executing tests whenever any file changes
+    autoWatch: true, */
 
 
     // start these browsers
@@ -58,12 +67,14 @@ module.exports = function(config) {
     browsers: ['Chrome'],
 
 
-    // Continuous Integration mode
+    /* // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true,
+    singleRun: true, */
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+    captureTimeout: 160000,
+    browserNoActivityTimeout: 160000,
   })
 }
