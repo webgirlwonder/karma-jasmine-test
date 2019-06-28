@@ -1,5 +1,5 @@
 describe("MyJSUtilities", function() {
-  const utils = require("../index.js");
+  const utils = require("./index.js");
 
   describe(">String Utils", function() {
     it("should be able to lower case a string",function() {

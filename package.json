@@ -22,6 +22,9 @@
     "webpack": "^4.35.0"
   },
   "dependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-loader": "^8.0.6",
     "backbone": "^1.4.0",
     "browserify": "^16.2.3",
     "expect": "^24.8.0",
