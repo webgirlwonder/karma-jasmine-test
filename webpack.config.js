@@ -1,11 +1,26 @@
-const config =  {
-    "mode": "development",
-    "entry": "./spec/MyJSUtilities.spec.js",
-    "target": "node",
-    "output": {
-        "path": __dirname+'/static',
-        "filename": "[name].[chunkhash:8].js"
-    }
-}
-
-module.exports = config;
+module.exports = {
+    mode: 'development',
+    devtool: 'none',
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+          },
+        },
+      ],
+    },
+    externals: {
+      request: {
+        commonjs: 'request',
+        commonjs2: 'request',
+      },
+      os: {
+        commonjs: 'os',
+        commonjs2: 'os',
+      },
+      process: 'process',
+    },
+  };
