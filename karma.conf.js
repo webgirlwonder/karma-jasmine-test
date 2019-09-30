@@ -1,33 +1,22 @@
-const webpackConfig = require('./webpack.config');
-
 module.exports = function (config) {
   config.set({
     basePath: '.',
     autoWatch: false,
     singleRun: true,
-    browsers: [ 'Chrome' ],
-    frameworks: [ 'jasmine' ],
+    browsers: ['Chrome'],
+    customLaunchers: {
+      IE_no_addons: {
+        base: 'IE',
+        flags: ['-extoff']
+      }
+    },
+    frameworks: [ 'jasmine', 'requirejs' ],
     files: [
-      './src/test.js',
+      'src/test-main.js',
+      {pattern: 'src/**/*.js', included: false},
     ],
-    preprocessors: {
-      './src/**/*.js': [ 'webpack' ],
-    },
-    webpack: webpackConfig,
-    webpackMiddleware: {
-      noInfo: true,
-      stats: 'error-only',
-    },
-    // reporters: [ 'coverage', 'progress', 'mocha' ],
-    // coverageReporter: {
-    //   includeAllSources: true,
-    //   reporters: [
-    //     { type: 'html', subdir: 'reports' },
-    //     { type: 'lcovonly', subdir: '.', file: 'reports/lcov.txt' },
-    //     { type: 'cobertura', subdir: '.', file: 'reports/cobertura.xml' },
-    //     { type: 'text-summary' },
-    //   ],
-    //   dir: `./_test`,
-    // },
+     preprocessors: {
+       'src/**/*.js': [ 'babel' ]
+     }
   });
 };

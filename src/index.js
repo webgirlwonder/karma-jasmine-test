@@ -38,7 +38,7 @@ function throwsTypeError() {
   throw new TypeError('A type error');
 }
 
-module.exports = {
+/* module.exports = {
     fibonacci: fibonacci,
     isPrime: isPrime,
     isEven: isEven,
@@ -48,4 +48,4 @@ module.exports = {
     contains: contains,
     repeat: repeat,
     throwsTypeError: throwsTypeError
-};
+}; */
