@@ -1,22 +1,38 @@
 module.exports = function (config) {
   config.set({
-    basePath: '.',
+    basePath: '',
     autoWatch: false,
     singleRun: true,
     browsers: ['Chrome'],
-    customLaunchers: {
-      IE_no_addons: {
-        base: 'IE',
-        flags: ['-extoff']
-      }
-    },
+    // customLaunchers: {
+    //   IE_no_addons: {
+    //     base: 'IE',
+    //     flags: ['-extoff']
+    //   }
+    // },
+
+    logLevel: config.LOG_INFO,
+
+    port: 9876,
+
     frameworks: [ 'jasmine', 'requirejs' ],
-    files: [
-      'src/test-main.js',
-      {pattern: 'src/**/*.js', included: false},
+
+    plugins: [
+        'karma-jasmine',
+        'karma-requirejs',
+        'karma-chrome-launcher'
     ],
-     preprocessors: {
-       'src/**/*.js': [ 'babel' ]
-     }
+
+    files: [
+      {pattern: 'src/**/*.js', included: false},
+      {pattern: 'test/**/*Spec.js', included: false},
+      'test/test-main.js'
+    ],
+
+    reporters: ['progress'],
+
+    colors: true,
+
+    captureTimeout: 60000
   });
 };

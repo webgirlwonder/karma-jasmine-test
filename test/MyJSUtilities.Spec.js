@@ -1,7 +1,7 @@
 require(['index'], function (utils) {
   describe("MyJSUtilities", function() {
 
-    describe(">String Utils", function() {
+    describe("String Utils", function() {
       it("should be able to lower case a string",function() {
         expect(utils.toLowerCase).toBeDefined();
         expect(utils.toLowerCase("HELLO WORLD")).toEqual("hello world");

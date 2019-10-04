@@ -9,9 +9,8 @@ for (var file in window.__karma__.files) {
 
 require.config({
     baseUrl: '/base/src/',
+
     deps: tests,
 
-    paths: {
-      index: 'index'
-    }
+    callback: window.__karma__.start
 });
